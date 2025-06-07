@@ -1,10 +1,13 @@
 import React, { useRef, useState } from "react";
 import "../assets/styles/Contact.scss";
-// import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import TextField from "@mui/material/TextField";
+import { message } from "antd";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 function Contact() {
   const [name, setName] = useState<string>("");
@@ -14,6 +17,7 @@ function Contact() {
   const [nameError, setNameError] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<boolean>(false);
   const [messageError, setMessageError] = useState<boolean>(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const form = useRef();
 
@@ -24,32 +28,32 @@ function Contact() {
     setEmailError(email === "");
     setMessageError(message === "");
 
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Message:", message);
+    if (name !== "" && email !== "" && message !== "") {
+      var templateParams = {
+        name: name,
+        email: email,
+        message: message,
+      };
 
-    /* Uncomment below if you want to enable the emailJS */
-
-    // if (name !== "" && email !== "" && message !== "") {
-    //   var templateParams = {
-    //     name: name,
-    //     email: email,
-    //     message: message,
-    //   };
-
-    //   console.log(templateParams);
-    //   emailjs.send("service_id", "template_id", templateParams, "api_key").then(
-    //     (response) => {
-    //       console.log("SUCCESS!", response.status, response.text);
-    //     },
-    //     (error) => {
-    //       console.log("FAILED...", error);
-    //     }
-    //   );
-    //   setName("");
-    //   setEmail("");
-    //   setMessage("");
-    // }
+      emailjs
+        .send(
+          "service_j3dl50a",
+          "template_qhl3gmc",
+          templateParams,
+          "XlfvIU6gzFsW1lHGG"
+        )
+        .then(
+          (response: any) => {
+            setOpenSnackbar(true); // Show success Snackbar
+            setName("");
+            setEmail("");
+            setMessage("");
+          },
+          (error: any) => {
+            console.log("FAILED...", error);
+          }
+        );
+    }
   };
 
   return (
@@ -126,6 +130,20 @@ function Contact() {
               Send
             </Button>
           </Box>
+          <Snackbar
+            open={openSnackbar}
+            autoHideDuration={4000}
+            onClose={() => setOpenSnackbar(false)}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          >
+            <MuiAlert
+              onClose={() => setOpenSnackbar(false)}
+              severity="success"
+              sx={{ width: "100%" }}
+            >
+              Email sent successfully!
+            </MuiAlert>
+          </Snackbar>
         </div>
       </div>
     </div>
