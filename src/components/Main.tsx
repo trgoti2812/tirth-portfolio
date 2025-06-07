@@ -2,16 +2,14 @@ import React from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import "../assets/styles/Main.scss";
+import TirthImage from "../assets/images/TirthImage.png";
 
 function Main() {
   return (
     <div className="container">
       <div className="about-section">
         <div className="image-wrapper">
-          <img
-            src="https://drive.google.com/uc?export=download&id=1dXeieVrHeM6dVrx_NfZgOo-25AGh-N6e"
-            alt="Avatar"
-          />
+          <img src={TirthImage} className="zoom" alt="thumbnail" width="100%" />
         </div>
         <div className="content">
           <div className="social_icons">
