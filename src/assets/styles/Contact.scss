@@ -17,15 +17,11 @@
     background-color: #5000ca;
     color: white;
   }
-
-  fieldset {
-    background-color: white;
-  }
 }
 
 label {
   font-size: 1.2rem;
-  font-family: 'DomaineDispNar-Medium', sans-serif;
+  font-family: "DomaineDispNar-Medium", sans-serif;
 }
 
 .form-flex {
@@ -45,4 +41,16 @@ form {
 .body-form {
   width: 100% !important;
   margin-bottom: 15px !important;
+}
+
+.MuiInputBase-input,
+.MuiOutlinedInput-input,
+.body-form input,
+.body-form textarea {
+  color: #111 !important; // Makes input text dark and visible
+  background: #fff !important; // Ensures background is white
+}
+
+.MuiInputLabel-root {
+  color: #333 !important; // Makes label visible
 }

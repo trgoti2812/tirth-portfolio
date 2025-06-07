@@ -24,6 +24,10 @@ function Contact() {
     setEmailError(email === "");
     setMessageError(message === "");
 
+    console.log("Name:", name);
+    console.log("Email:", email);
+    console.log("Message:", message);
+
     /* Uncomment below if you want to enable the emailJS */
 
     // if (name !== "" && email !== "" && message !== "") {
@@ -94,19 +98,26 @@ function Contact() {
             </div>
             <TextField
               required
-              id="outlined-multiline-static"
               label="Message"
               placeholder="Send me any inquiries or questions"
               multiline
               rows={10}
               className="body-form"
               value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
+              onChange={(e) => setMessage(e.target.value)}
               error={messageError}
               helperText={messageError ? "Please enter the message" : ""}
+              sx={{
+                "& .MuiInputBase-root": {
+                  backgroundColor: "#fff", // or your custom background
+                },
+                "& textarea": {
+                  padding: "10px", // reduce padding
+                  backgroundColor: "#fff", // optional
+                },
+              }}
             />
+
             <Button
               variant="contained"
               endIcon={<SendIcon />}
